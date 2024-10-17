@@ -4,8 +4,8 @@ const resultSchema = new mongoose.Schema(
     {
         dice1: { type: Number, required: true },
         dice2: { type: Number, required: true },
-        multiplierValue: { type: Number, required: true },
-        multiplierChoice: { type: String, required: true },
+        multiplierValue: { type: Number },
+        multiplierChoice: { type: String },
     },
     { _id: false }
 );

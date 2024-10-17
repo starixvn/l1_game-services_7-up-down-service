@@ -1,6 +1,6 @@
 import { asClass, asValue } from "awilix";
 import { Core } from "sc-game-base";
-import { SettleGameRoundConsumer } from "./consumers";
+import { RoundResultConsumer, SettleGameRoundConsumer } from "./consumers";
 import { Bot, GameCron } from "./crons";
 import { betLogs, bets, results, rounds } from "./models";
 import HttpRouter from "./routers/http-router";
@@ -18,6 +18,7 @@ export default class ContainerRegistry extends Core.ContainerRegistry {
     }
 
     registerCrons() {
+        super.registerCrons();
         this.container.register({
             bot: asClass(Bot).singleton(),
             gameCron: asClass(GameCron).singleton().proxy(),
@@ -37,6 +38,7 @@ export default class ContainerRegistry extends Core.ContainerRegistry {
 
         this.container.register({
             settleGameRoundConsumer: asClass(SettleGameRoundConsumer).singleton().proxy(),
+            roundResultConsumer: asClass(RoundResultConsumer).singleton(),
         });
     }
 }

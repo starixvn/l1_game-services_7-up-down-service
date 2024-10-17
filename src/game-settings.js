@@ -16,4 +16,5 @@ export default {
         down: 28,
         seven: 44,
     },
+    roundHasMultiplierProbability: 60
 };

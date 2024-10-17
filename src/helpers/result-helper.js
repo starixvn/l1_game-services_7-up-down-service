@@ -22,19 +22,24 @@ export const generateResult = (mode, multiplierConfig) => {
     const selectedMode = mode >= 1 && mode <= 3 ? mode : 1;
     const dice1 = random(selectedMode);
     const dice2 = random(selectedMode);
+
+    let multiplierValue, multiplierChoice;
     const chance = new Chance();
 
-    const multiplierValues = multiplierConfig.values.filter((x) => x.ratio > 0);
+    if (chance.bool({ likelihood: gameSettings.roundHasMultiplierProbability })) {
+        console.log(multiplierConfig);
+        const multiplierValues = multiplierConfig.values.filter((x) => x.ratio > 0);
 
-    const multiplierValue = chance.weighted(
-        multiplierValues.map((x) => x.number),
-        multiplierValues.map((x) => x.ratio)
-    );
+        multiplierValue = chance.weighted(
+            multiplierValues.map((x) => x.number),
+            multiplierValues.map((x) => x.ratio)
+        );
 
-    const multiplierChoice = chance.weighted(
-        gameSettings.choices,
-        gameSettings.choices.map((x) => gameSettings.multiplierChoiceRatios[x])
-    );
+        multiplierChoice = chance.weighted(
+            gameSettings.choices,
+            gameSettings.choices.map((x) => gameSettings.multiplierChoiceRatios[x])
+        );
+    }
 
     return { dice1, dice2, multiplierValue, multiplierChoice };
 };
