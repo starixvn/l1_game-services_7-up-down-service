@@ -1,6 +1,6 @@
 export default {
     id: 10,
-    name: "7Up7Down",
+    name: "SevenUpDown",
     durations: {
         wholeRound: 29,
         placingBets: 20,

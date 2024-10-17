@@ -23,14 +23,14 @@ export default {
     },
     enabledLogs: true,
     database: {
-        url: "mongodb://lmn_backend:M7K4ttH%2AtZ3ml%3F%29%7CA%5DjN4%3FLBhwF%266IO%3C@10.99.99.53:39110,10.99.99.54:39110,10.99.99.188:39110,10.99.99.187:39110/?replicaSet=SabaMain&appName=7up7down",
+        url: "mongodb://lmn_backend:M7K4ttH%2AtZ3ml%3F%29%7CA%5DjN4%3FLBhwF%266IO%3C@10.99.99.53:39110,10.99.99.54:39110,10.99.99.188:39110,10.99.99.187:39110/?replicaSet=SabaMain&appName=sevenupdown",
         options: {
             dbName: "minigame",
         },
     },
     sentry: {
         sentryUrl: "http://58fc00e79ab34a3bab04a79038760cb8@10.2.189.50:9009/8",
-        logIdentifier: "7up7down",
+        logIdentifier: "sevenupdown",
         env: "PROD",
     },
     authenticateSettings: {

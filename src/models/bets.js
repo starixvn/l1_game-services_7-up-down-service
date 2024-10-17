@@ -23,4 +23,4 @@ const betSchema = {
     operatorId: { type: String, required: true },
 };
 
-export const bets = mongoose.model("7up7down_bet", new mongoose.Schema(betSchema));
+export const bets = mongoose.model("sevenupdown_bet", new mongoose.Schema(betSchema));

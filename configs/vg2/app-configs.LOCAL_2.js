@@ -24,14 +24,14 @@ export default {
     },
     enabledLogs: true,
     database: {
-        url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39202,10.10.50.13:39202,10.10.50.14:39202/?replicaSet=L2ppLocal&appName=7up7down",
+        url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39202,10.10.50.13:39202,10.10.50.14:39202/?replicaSet=L2ppLocal&appName=sevenupdown",
         options: {
             dbName: "minigame",
         },
     },
     sentry: {
         sentryUrl: "https://acb36eb835d948d68c1aad9873754d51@sentry.lumigame.com/27",
-        logIdentifier: "7up7down",
+        logIdentifier: "sevenupdown",
         env: "LOCAL_2",
     },
     authenticateSettings: {

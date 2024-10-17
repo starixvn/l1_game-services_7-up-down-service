@@ -21,4 +21,4 @@ const betLogSchema = {
     receivedTime: { type: Date },
 };
 
-export const betLogs = mongoose.model("7up7down_betlog", new mongoose.Schema(betLogSchema));
+export const betLogs = mongoose.model("sevenupdown_betlog", new mongoose.Schema(betLogSchema));

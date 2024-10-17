@@ -27,4 +27,4 @@ const schema = new mongoose.Schema({
     exchangeRateId: { type: Number, require: true },
 });
 
-export const rounds = mongoose.model("7up7down_round", schema);
+export const rounds = mongoose.model("sevenupdown_round", schema);

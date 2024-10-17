@@ -1,19 +1,19 @@
 const game = {
     id: 103,
-    name: "7Up7Down",
+    name: "SevenUpDown",
 };
 
 const currencyData = { code: "USD", name: "$US" };
 
 const socketOptions = {
-    socketUri: `http://localhost:5002/user/7Up7Down`,
+    socketUri: `http://localhost:5002/user/sevenupdown`,
     gameName: game.name,
     proxyRoute: "/socket.io",
 };
 
 const gameConfig = {
     type: 1,
-    name: "7up7down",
+    name: "sevenupdown",
     displayName: "7 Up 7 Down",
     enabled: true,
     botenabled: false,
