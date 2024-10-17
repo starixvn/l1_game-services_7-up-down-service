@@ -6,6 +6,8 @@ export default class GameCron extends Core.Crons.BaseGameCron {
     }
     async proceed() {
         await super.proceed();
+        const { durations } = this.definition;
+        
         if (this.gameData.remainingTime === durations.lockingBet - 1) {
             this.publishMultiplierResult();
         }
