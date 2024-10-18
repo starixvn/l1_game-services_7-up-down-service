@@ -17,7 +17,7 @@ const run = async () => {
     const gameData = new Core.GameData(gameSettings.durations.wholeRound);
 
     const container = new ContainerRegistry().register(appConfigs, definition, gameData);
-    const app = new Core.BaseGameApp("7Up7Down", appConfigs);
+    const app = new Core.BaseGameApp("SevenUpDown", appConfigs);
     await app.run();
     await app.startGame(container);
 };

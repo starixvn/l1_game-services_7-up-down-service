@@ -27,7 +27,6 @@ export const generateResult = (mode, multiplierConfig) => {
     const chance = new Chance();
 
     if (chance.bool({ likelihood: gameSettings.roundHasMultiplierProbability })) {
-        console.log(multiplierConfig);
         const multiplierValues = multiplierConfig.values.filter((x) => x.ratio > 0);
 
         multiplierValue = chance.weighted(

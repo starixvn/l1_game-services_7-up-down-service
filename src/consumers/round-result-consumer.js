@@ -1,4 +1,5 @@
 import { Core } from "sc-game-base";
+import { generateSHA256Result } from "../helpers";
 
 export default class RoundResultConsumer extends Core.BaseEventConsumers.RoundResultConsumer {
     generateResult() {
@@ -10,7 +11,11 @@ export default class RoundResultConsumer extends Core.BaseEventConsumers.RoundRe
                 ? resultFromAdmin.result
                 : this.definition.generateResult(randomMode, oddsMultipliers);
 
-        console.log(result);
         return result;
+    }
+
+    buildResultHash() {
+        const formattedResult = this.definition.generateRawResultForHash(this.gameData.result);
+        return { ...generateSHA256Result(formattedResult, this.gameData.roundId), roundId: this.gameData.roundId };
     }
 }
