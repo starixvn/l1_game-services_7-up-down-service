@@ -3,7 +3,7 @@ import { Core } from "sc-game-base";
 import { RoundResultConsumer, SettleGameRoundConsumer } from "./consumers";
 import { Bot, GameCron } from "./crons";
 import { betLogs, bets, results, rounds } from "./models";
-import HttpRouter from "./routers/http-router";
+import { HttpRouter, SocketRouter } from "./routers";
 
 export default class ContainerRegistry extends Core.ContainerRegistry {
     registerModels() {
@@ -30,6 +30,7 @@ export default class ContainerRegistry extends Core.ContainerRegistry {
 
         this.container.register({
             httpRouter: asClass(HttpRouter),
+            socketRouter: asClass(SocketRouter).proxy(),
         });
     }
 
