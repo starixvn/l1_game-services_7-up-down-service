@@ -8,6 +8,12 @@ const settlementRuleEntries = Object.entries({
     seven: (totalPoints) => totalPoints === 7,
 });
 
+const choiceMapping = {
+    up: "8-12",
+    down: "2-7",
+    seven: "7",
+};
+
 export const getSettlementResult = (roundResult) => {
     const totalPoints = roundResult.dice1 + roundResult.dice2;
 
@@ -44,5 +50,10 @@ export const generateResult = (mode, multiplierConfig) => {
 };
 
 export const generateRawResultForHash = (roundResult) => {
-    return `{${+roundResult.dice1},${+roundResult.dice2},${roundResult.multiplierChoice},${roundResult.multiplierValue}x}`;
+    const { multiplierChoice, multiplierValue, dice1, dice2 } = roundResult;
+    if (multiplierChoice && multiplierValue) {
+        return `{${+dice1},${+dice2},${multiplierValue}x:${choiceMapping[multiplierChoice]}}`;
+    }
+
+    return `{${+dice1},${+dice2}`;
 };
