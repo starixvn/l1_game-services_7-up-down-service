@@ -12,9 +12,8 @@ export default {
     defaultBetTracks: {},
     hedgeBetGroups: [["up", "down"]],
     multiplierChoiceRatios: {
-        up: 28,
-        down: 28,
-        seven: 44,
+        up: 38,
+        down: 38,
+        seven: 24,
     },
-    roundHasMultiplierProbability: 60
 };
