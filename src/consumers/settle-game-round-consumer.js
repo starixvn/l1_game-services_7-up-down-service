@@ -34,4 +34,14 @@ export default class SettleGameRoundConsumer extends Core.BaseEventConsumers.Set
 
         return finalOdds;
     }
+    
+    calculateBetResult(settlementResult, bet, odds) {
+        const betResult = super.calculateBetResult(settlementResult, bet, odds);
+
+        betResult.totalWin = Math.min(betResult.totalWin, bet.maxWin);
+        betResult.netWin = +(betResult.totalWin - bet.totalAmount).toFixed(2);
+        betResult.reachMaxWin = betResult.totalWin === bet.maxWin;
+
+        return betResult;
+    }
 }

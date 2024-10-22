@@ -9,8 +9,8 @@ export default class Bot extends Core.Crons.BaseBot {
         this.appConfigs = appConfigs;
 
         this.betChoiceRatio = {
-            mainChoices: 99,
-            rareChoices: 1,
+            mainChoices: 80,
+            rareChoices: 20,
         };
 
         this.mainOpts = ["up", "down"];
