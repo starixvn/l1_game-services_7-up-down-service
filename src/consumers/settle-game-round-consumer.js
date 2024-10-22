@@ -13,6 +13,7 @@ export default class SettleGameRoundConsumer extends Core.BaseEventConsumers.Set
 
                     bet.betwin = betResult.totalWin;
                     bet.paid = true;
+                    bet.reachMaxWin = betResult.reachMaxWin;
 
                     await bet.save();
                     await this.callEndGame(bet, roundId, time, betResult);
@@ -34,7 +35,7 @@ export default class SettleGameRoundConsumer extends Core.BaseEventConsumers.Set
 
         return finalOdds;
     }
-    
+
     calculateBetResult(settlementResult, bet, odds) {
         const betResult = super.calculateBetResult(settlementResult, bet, odds);
 
