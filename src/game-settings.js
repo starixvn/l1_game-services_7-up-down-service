@@ -1,5 +1,5 @@
 export default {
-    id: 10,
+    id: 103,
     name: "SevenUpDown",
     durations: {
         wholeRound: 29,
