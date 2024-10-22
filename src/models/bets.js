@@ -22,6 +22,7 @@ const betSchema = {
     rate: { type: Number, required: true },
     operatorId: { type: String, required: true },
     reachMaxWin: { type: Boolean, default: false },
+    maxWin: { type: Number, default: 0 },
 };
 
 export const bets = mongoose.model("sevenupdown_bet", new mongoose.Schema(betSchema));
