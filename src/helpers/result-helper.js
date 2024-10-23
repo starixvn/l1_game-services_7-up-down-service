@@ -29,7 +29,7 @@ export const generateResult = (mode, multiplierConfig) => {
     const dice1 = random(selectedMode);
     const dice2 = random(selectedMode);
 
-    let multiplierValue, multiplierChoice;
+    let multiplier;
     const chance = new Chance();
 
     const multiplierValues = multiplierConfig.values.filter((x) => x.ratio > 0);
@@ -40,20 +40,22 @@ export const generateResult = (mode, multiplierConfig) => {
     );
 
     if (pickedMultiplier > 1) {
-        multiplierValue = pickedMultiplier;
-        multiplierChoice = chance.weighted(
-            gameSettings.choices,
-            gameSettings.choices.map((x) => gameSettings.multiplierChoiceRatios[x])
-        );
+        multiplier = {
+            value: pickedMultiplier,
+            choice: chance.weighted(
+                gameSettings.choices,
+                gameSettings.choices.map((x) => gameSettings.multiplierChoiceRatios[x])
+            ),
+        };
     }
 
-    return { dice1, dice2, multiplierValue, multiplierChoice };
+    return { dice1, dice2, multiplier };
 };
 
 export const generateRawResultForHash = (roundResult) => {
-    const { multiplierChoice, multiplierValue, dice1, dice2 } = roundResult;
-    if (multiplierChoice && multiplierValue) {
-        return `{${+dice1},${+dice2},${multiplierValue}x:${choiceMapping[multiplierChoice]}}`;
+    const { multiplier, dice1, dice2 } = roundResult;
+    if (multiplier) {
+        return `{${+dice1},${+dice2}}{${multiplier.value}x:${choiceMapping[multiplier.choice]}}`;
     }
 
     return `{${+dice1},${+dice2}`;

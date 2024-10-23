@@ -1,5 +1,5 @@
 {
-    "name": "treasure-island-service",
+    "name": "seven-updown-service",
     "version": "1.0.0",
     "description": "",
     "main": "./src/app.js",

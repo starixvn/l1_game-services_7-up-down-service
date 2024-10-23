@@ -28,9 +28,10 @@ export default class SettleGameRoundConsumer extends Core.BaseEventConsumers.Set
     calculateFinalOdds() {
         const { odds } = this.gameData.gameConfigs;
         const finalOdds = { ...odds };
-        const { multiplierValue, multiplierChoice } = this.gameData.result;
-        if (multiplierChoice && multiplierValue) {
-            finalOdds[multiplierChoice] = (finalOdds[multiplierChoice] - 1) * multiplierValue + 1;
+        const { multiplier } = this.gameData.result;
+        if (multiplier) {
+            const { choice, value } = multiplier;
+            finalOdds[choice] = (finalOdds[choice] - 1) * value + 1;
         }
 
         return finalOdds;
@@ -46,7 +47,6 @@ export default class SettleGameRoundConsumer extends Core.BaseEventConsumers.Set
         return betResult;
     }
 
-    
     collectRoundResult(result, settlementResult, roundId) {
         return {
             result,

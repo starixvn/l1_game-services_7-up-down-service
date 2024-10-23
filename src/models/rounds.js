@@ -1,11 +1,18 @@
 import mongoose from "mongoose";
 
+const multiplierResultSchema = new mongoose.Schema(
+    {
+        value: { type: Number, required: true },
+        choice: { type: String, required: true },
+    },
+    { _id: false }
+);
+
 const resultSchema = new mongoose.Schema(
     {
         dice1: { type: Number, required: true },
         dice2: { type: Number, required: true },
-        multiplierValue: { type: Number },
-        multiplierChoice: { type: String },
+        multiplier: multiplierResultSchema,
     },
     { _id: false }
 );

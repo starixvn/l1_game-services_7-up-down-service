@@ -12,6 +12,10 @@ export default class InGameConsumer extends Core.BaseEventConsumers.InGameConsum
             max: Math.max(...multipliers),
         };
 
+        if (this.gameData.remainingTime <= durations.lockingBet - 1) {
+            payload.multiplier = this.gameData.result.multiplier;
+        }
+
         return payload;
     }
 }

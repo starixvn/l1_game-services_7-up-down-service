@@ -14,7 +14,7 @@ export default class GameCron extends Core.Crons.BaseGameCron {
     }
 
     publishMultiplierResult() {
-        const { multiplierValue, multiplierChoice } = this.gameData.result;
-        multiplierValue && multiplierChoice && this.runningRoundInfoPublisher.publishToAllUsers({ multiplierValue, multiplierChoice });
+        const { multiplier } = this.gameData.result;
+        multiplier && this.runningRoundInfoPublisher.publishToAllUsers({ multiplier });
     }
 }
