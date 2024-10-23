@@ -46,12 +46,4 @@ export default class SettleGameRoundConsumer extends Core.BaseEventConsumers.Set
 
         return betResult;
     }
-
-    collectRoundResult(result, settlementResult, roundId) {
-        return {
-            result,
-            settlementResult,
-            roundId,
-        };
-    }
 }
