@@ -58,8 +58,10 @@ describe("SettleGameRoundConsumer", () => {
                 {
                     dice1: 5,
                     dice2: 2,
-                    multiplierValue: 2,
-                    multiplierChoice: "down",
+                    multiplier: {
+                        value: 2,
+                        choice: "down",
+                    },
                 },
                 {
                     ...gameConfigs.odds,
@@ -70,8 +72,10 @@ describe("SettleGameRoundConsumer", () => {
                 {
                     dice1: 2,
                     dice2: 3,
-                    multiplierValue: 2,
-                    multiplierChoice: "seven",
+                    multiplier: {
+                        value: 2,
+                        choice: "seven",
+                    },
                 },
                 {
                     ...gameConfigs.odds,

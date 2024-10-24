@@ -24,29 +24,32 @@ export const getSettlementResult = (roundResult) => {
     }, {});
 };
 
-export const generateResult = (mode, multiplierConfig) => {
+export const generateResult = (mode, multiplierConfigs) => {
     const selectedMode = mode >= 1 && mode <= 3 ? mode : 1;
     const dice1 = random(selectedMode);
     const dice2 = random(selectedMode);
 
     let multiplier;
-    const chance = new Chance();
+    
+    if (multiplierConfigs && multiplierConfigs.values.length > 0) {
+        const chance = new Chance();
 
-    const multiplierValues = multiplierConfig.values.filter((x) => x.ratio > 0);
+        const multiplierValues = multiplierConfigs.values.filter((x) => x.ratio > 0);
 
-    const pickedMultiplier = chance.weighted(
-        multiplierValues.map((x) => x.number),
-        multiplierValues.map((x) => x.ratio)
-    );
+        const pickedMultiplier = chance.weighted(
+            multiplierValues.map((x) => x.number),
+            multiplierValues.map((x) => x.ratio)
+        );
 
-    if (pickedMultiplier > 1) {
-        multiplier = {
-            value: pickedMultiplier,
-            choice: chance.weighted(
-                gameSettings.choices,
-                gameSettings.choices.map((x) => gameSettings.multiplierChoiceRatios[x])
-            ),
-        };
+        if (pickedMultiplier > 1) {
+            multiplier = {
+                value: pickedMultiplier,
+                choice: chance.weighted(
+                    gameSettings.choices,
+                    gameSettings.choices.map((x) => gameSettings.multiplierChoiceRatios[x])
+                ),
+            };
+        }
     }
 
     return { dice1, dice2, multiplier };
@@ -58,5 +61,5 @@ export const generateRawResultForHash = (roundResult) => {
         return `{${+dice1},${+dice2}}{${multiplier.value}x:${choiceMapping[multiplier.choice]}}`;
     }
 
-    return `{${+dice1},${+dice2}`;
+    return `{${+dice1},${+dice2}}`;
 };

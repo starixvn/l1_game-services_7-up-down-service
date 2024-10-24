@@ -24,7 +24,9 @@ export default class GameResultServiceConsumer {
             gameTypeId: this.definition.id,
         };
         const url = new URL("/BetHistory/GetAccessUrl", this.apiSettings.baseUrl);
+        
         const response = await axios.post(url.href, data);
+        
         return response.data;
     }
 }

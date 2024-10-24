@@ -4,7 +4,7 @@ export default class InGameConsumer extends Core.BaseEventConsumers.InGameConsum
     async buildPayload(realPlayer) {
         const payload = await super.buildPayload(realPlayer);
 
-        if (this.gameData.gameConfigs) {
+        if (this.gameData.gameConfigs?.oddsMultipliers) {
             const multipliers = this.gameData.gameConfigs.oddsMultipliers.values
                 .filter((x) => x.ratio > 0 && x.number > 1)
                 .map((x) => x.number);
