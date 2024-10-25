@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import { users } from "sc-base-database";
+import { middlewares } from "sc-common";
+
 import {
     createCurrencyGroupGames,
     createDummyCurrency,
@@ -7,18 +9,16 @@ import {
     createExchangeRate,
     createGameConfig,
     createPartnerConfig,
-    normalUser,
 } from "sc-game-service-integration-utils";
-import { configureDatabase } from "../../../src/helpers/database-helper";
 
 import appConfigs from "../../../src/app-configs.IGT";
-import { currencyData, game, gameConfig, rounds, userBetData } from "./test-data";
+import { currencyData, game, gameConfig, rounds } from "./test-data";
+
+import { rounds as roundsRepository } from "../../../src/models";
 
 const connectDatabase = async () => {
     console.log("connect database");
-
-    await configureDatabase(mongoose, appConfigs.database);
-
+    await middlewares.database.configureDatabase(mongoose, appConfigs.database);
     await clearAllData();
 };
 
@@ -39,7 +39,7 @@ export const createTestData = async () => {
     const currency = await createDummyCurrency(partnerConfig.partnerId, currencyData.code, currencyData.name);
     await createCurrencyGroupGames(currency.groupId, game.id, gameConfig);
     await createDummyUsers(currency);
-    //await createRounds();
+    await createRounds();
     //await createUserBetData();
 
     console.log("Create exchange rate, game config & dummy user for testing successfully!");
@@ -52,13 +52,7 @@ const getUserId = async (playerId) => {
 };
 
 const createRounds = async () => {
-    return BaccaratRounds.insertMany(rounds);
-};
-
-const createUserBetData = async () => {
-    const userId = await getUserId(normalUser.playerId);
-    const betData = userBetData(userId);
-    return bets.insertMany(betData);
+    return roundsRepository.insertMany(rounds);
 };
 
 createTestData();

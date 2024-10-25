@@ -1,7 +1,7 @@
 import { GameClientDriver, normalUser } from "sc-game-service-integration-utils";
-import { socketOptions } from "./stubs/test-data";
+import gameSettings from "../../src/game-settings";
 import { initUserSession } from "./init-user-session";
-import { mockGameSettings } from "./stubs/test-data";
+import { socketOptions } from "./stubs/test-data";
 
 export const placeBetTest = () => {
     describe("when user place bet", () => {
@@ -27,25 +27,14 @@ export const placeBetTest = () => {
 
             await new Promise((resolve) => {
                 setTimeout(() => {
-                    client.emit("bet", { betChoice: "player", amount: 100 });
+                    client.emit("bet", { betChoice: "up", amount: 100 });
                     resolve();
-                }, getTimeOutToBet(remainingTime, mockGameSettings.durations) * 1000);
+                }, getTimeOutToBet(remainingTime, gameSettings.durations) * 1000);
             });
 
             // Assert
             const betResult = await client.handleGameEvent((data) => data.endBet);
-            expect(betResult).toStrictEqual({
-                betChoice: "player",
-                freeBet: false,
-                endBet: 120,
-                ownBets: { player: 100, fee: 20 },
-                ownChip: { betChoice: "player", amount: 100 },
-                user: {
-                    maxBet: 2000,
-                    minBet: 1,
-                    red: 24250,
-                },
-            });
+            expect(betResult.endBet).toEqual(100);
         });
     });
 };

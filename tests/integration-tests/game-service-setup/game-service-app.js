@@ -6,11 +6,11 @@ import gameSettings from "../../../src/game-settings";
 import { generateResult, getSettlementResult } from "../../../src/helpers/result-helper";
 
 export const run = async () => {
-    initAPIStub(appConfigs.apiSettings.apiUrl);
-    stubUserService(appConfigs);
-
     const definition = new Core.GameDefinition(gameSettings, generateResult, getSettlementResult);
     const gameData = new Core.GameData(gameSettings.durations.wholeRound);
+    
+    initAPIStub(appConfigs.apiSettings.apiUrl);
+    stubUserService(appConfigs);
     subGameManagementService(appConfigs, definition);
 
     const container = new ContainerRegistry().register(appConfigs, definition, gameData);
