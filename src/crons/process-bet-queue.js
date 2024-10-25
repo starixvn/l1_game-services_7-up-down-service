@@ -2,12 +2,12 @@ import { Core } from "sc-game-base";
 
 export default class ProcessBetQueue extends Core.Crons.ProcessBetQueue {
     async upsertBet(player, roundId, bet, rate) {
-        const configs = this.gameData.gameConfigs;
+        const { odds } = this.gameData.gameConfigs;
         const newBet = {
             uid: player.UID,
             name: player.profile.name,
             time: new Date(),
-            odds: configs.odds,
+            odds,
             freeBet: bet.freeBet,
             roundId,
             maxWin: this.getMaxWinPerRound(player),

@@ -1,4 +1,4 @@
-import { generateRawResultForHash, generateResult } from "../../../src/helpers/result-helper";
+import { generateRawResultForHash, generateResult, getSettlementResult } from "../../../src/helpers/result-helper";
 
 describe("generateRawResultForHash", () => {
     describe("when result doesnt have multiplier", () => {
@@ -58,5 +58,14 @@ describe("generateResult", () => {
             //Assert
             expect(result.multiplier).not.toBeUndefined();
         });
+    });
+});
+
+describe("getSettlementResult", () => {
+    it("should return result correctly", () => {
+        //Act
+        const settlementResult = getSettlementResult({ dice1: 1, dice2: 1 });
+        //Assert
+        expect(settlementResult).toEqual({ up: false, down: true, seven: false });
     });
 });

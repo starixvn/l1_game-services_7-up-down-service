@@ -41,7 +41,7 @@ export default class Bot extends Core.Crons.BaseBot {
             const betAmount = this.convertAmountToChip(helpers.numberHelper.getRandomNumberStep5(minBet, maxBet, true));
 
             this.gameData.totalBets[choice] = (this.gameData.totalBets[choice] ?? 0) + betAmount;
-            this.allBets[choice] = (this.allBets[choice] ?? 0) + betAmount;
+            this.totalBets[choice] = (this.totalBets[choice] ?? 0) + betAmount;
             this.totalTickets++;
 
             if (this.isSmallTicket(betAmount)) {
@@ -56,7 +56,7 @@ export default class Bot extends Core.Crons.BaseBot {
     }
 
     resetAllBets() {
-        this.allBets = {
+        this.totalBets = {
             up: 0,
             down: 0,
             seven: 0,
@@ -107,14 +107,14 @@ export default class Bot extends Core.Crons.BaseBot {
 
     getTotalAmountOnChoiceGroup(choices) {
         let total = 0;
-        choices.forEach((choice) => (total += this.allBets[choice]));
+        choices.forEach((choice) => (total += this.totalBets[choice]));
 
         return total;
     }
 
     getAllBetAmount() {
         let total = 0;
-        this.definition.choices.forEach((choice) => (total += this.allBets[choice]));
+        this.definition.choices.forEach((choice) => (total += this.totalBets[choice]));
 
         return total;
     }
