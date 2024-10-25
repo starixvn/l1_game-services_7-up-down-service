@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
-import { users } from "sc-base-database";
 import { middlewares } from "sc-common";
-
 import {
     createCurrencyGroupGames,
     createDummyCurrency,
@@ -44,11 +42,6 @@ export const createTestData = async () => {
 
     console.log("Create exchange rate, game config & dummy user for testing successfully!");
     process.exit(0);
-};
-
-const getUserId = async (playerId) => {
-    const user = await users.findOne({ "local.playerId": playerId }, { _id: true }).lean();
-    return user._id.toString();
 };
 
 const createRounds = async () => {
