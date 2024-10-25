@@ -14,16 +14,6 @@ export default {
 
         enableApiLogs: true,
     },
-    mainServerApiSettings: {
-        url: "http://localhost:8080/api",
-        auth: {
-            url: "https://l1-auth2.lumigame.com",
-            id: "game-services",
-            secret: "gameservices@20luminet&",
-        },
-        requestTimeout: 10000,
-        useAuthenticate: true,
-    },
     gameManagementApiSettings: {
         BASE: "https://l1-proxy2.lumigame.com/game-management-service",
     },
