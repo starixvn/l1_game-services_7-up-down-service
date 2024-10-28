@@ -57,12 +57,12 @@ describe("InGameConsumer", () => {
 
     describe("buildPayload", () => {
         describe("when gameconfigs.oddMultipliers has value", () => {
-            it("should return multiplierRange", async () => {
+            it("should return multipliers", async () => {
                 //Act
                 const payload = await inGameConsumer.buildPayload(realPlayer);
 
                 //Assert
-                expect(payload.gameConfigs.multiplierRange).toEqual({ min: 2, max: 5 });
+                expect(payload.gameConfigs.multipliers).toEqual([2, 3, 4, 5]);
             });
         });
 

@@ -9,10 +9,7 @@ export default class InGameConsumer extends Core.BaseEventConsumers.InGameConsum
                 .filter((x) => x.ratio > 0 && x.number > 1)
                 .map((x) => x.number);
 
-            payload.gameConfigs.multiplierRange = {
-                min: Math.min(...multipliers),
-                max: Math.max(...multipliers),
-            };
+            payload.gameConfigs.multipliers = multipliers;
         }
 
         if (this.gameData.remainingTime <= this.definition.durations.lockingBet - 1) {
