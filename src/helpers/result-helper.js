@@ -10,7 +10,7 @@ const settlementRuleEntries = Object.entries({
 
 const choiceMapping = {
     up: "8-12",
-    down: "2-6`",
+    down: "2-6",
     seven: "7",
 };
 

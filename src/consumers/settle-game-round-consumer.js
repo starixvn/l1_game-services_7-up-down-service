@@ -1,6 +1,14 @@
 import { Core } from "sc-game-base";
 
 export default class SettleGameRoundConsumer extends Core.BaseEventConsumers.SettleGameRoundConsumer {
+    async settleRound() {
+        try {
+            await super.settleRound();
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     async settleBets({ settlementResult, roundId, time }) {
         const bets = await this.queryBets(roundId);
 
