@@ -39,6 +39,7 @@ export default class Bot extends Core.Crons.BaseBot {
             const minBet = this.getMinBet();
             const maxBet = this.getMaxBet(bot, choice);
             const betAmount = this.convertAmountToChip(helpers.numberHelper.getRandomNumberStep5(minBet, maxBet, true));
+            console.log(choice, maxBet, betAmount);
 
             this.gameData.totalBets[choice] = (this.gameData.totalBets[choice] ?? 0) + betAmount;
             this.totalBets[choice] = (this.totalBets[choice] ?? 0) + betAmount;
@@ -92,13 +93,12 @@ export default class Bot extends Core.Crons.BaseBot {
         const isSmallTicket = this.totalTickets === 0 ? true : (this.smallTickets * 100) / this.totalTickets < this.smallTicketRatio;
         const maxBet = Math.min(gameConfigs.choices_maxbet[choice], gameConfigs.bot_maxbet);
 
-        const maxBetOfSmallTicket = Math.min(minBet * 50, gameConfigs.bot_maxbet * 0.3);
-
         if (this.mainOpts.includes(choice)) {
+            const maxBetOfSmallTicket = Math.min(minBet * 50, maxBet * 0.3);
             return isSmallTicket ? maxBetOfSmallTicket : maxBet;
         }
 
-        return Math.min(minBet * 10, gameConfigs.bot_maxbet * 0.2, gameConfigs.choices_maxbet[choice]);
+        return Math.min(minBet * 10, maxBet * 0.2);
     }
 
     getRandomChoiceFromGroup(group) {
@@ -121,10 +121,6 @@ export default class Bot extends Core.Crons.BaseBot {
 
     isSmallTicket(amount) {
         return amount <= this.getMinBet() * 50;
-    }
-
-    getTotalBetAmount(currentBet) {
-        return currentBet ? this.definition.choices.reduce((total, choice) => total + currentBet[choice], 0) : 0;
     }
 
     convertAmountToChip(amount) {
