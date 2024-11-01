@@ -3,7 +3,8 @@ import { Core } from "sc-game-base";
 export default class InGameConsumer extends Core.BaseEventConsumers.InGameConsumer {
     async buildPayload(realPlayer) {
         const payload = await super.buildPayload(realPlayer);
-
+        payload.gameConfigs.maxWinPerRound = this.gameData.gameConfigs.maxWinPerRound;
+ 
         if (this.gameData.gameConfigs?.oddsMultipliers) {
             const multipliers = this.gameData.gameConfigs.oddsMultipliers.values
                 .filter((x) => x.ratio > 0 && x.number > 1)
