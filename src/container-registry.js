@@ -3,6 +3,7 @@ import { Core } from "sc-game-base";
 import { GameResultServiceConsumer, InGameConsumer, RoundResultConsumer, SettleGameRoundConsumer } from "./consumers";
 import { Bot, GameCron, ProcessBetQueue } from "./crons";
 import { betLogs, bets, results, rounds } from "./models";
+import UserBetResultPublisher from "./publishers/user-bet-result-publisher";
 import { SocketRouter } from "./routers";
 
 export default class ContainerRegistry extends Core.ContainerRegistry {
@@ -26,7 +27,7 @@ export default class ContainerRegistry extends Core.ContainerRegistry {
         });
     }
 
-    registerRouters() {     
+    registerRouters() {
         super.registerRouters();
 
         this.container.register({
@@ -42,6 +43,14 @@ export default class ContainerRegistry extends Core.ContainerRegistry {
             roundResultConsumer: asClass(RoundResultConsumer).singleton(),
             gameResultServiceConsumer: asClass(GameResultServiceConsumer).proxy(),
             inGameConsumer: asClass(InGameConsumer).singleton(),
-        }); 
+        });
+    }
+
+    registerPublishers() {
+        super.registerPublishers();
+
+        this.container.register({
+            userBetResultPublisher: asClass(UserBetResultPublisher).singleton(),
+        });
     }
 }
