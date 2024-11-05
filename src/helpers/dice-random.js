@@ -1,10 +1,12 @@
 import Chance from "chance";
+import { getRandomValues, randomInt } from "crypto";
 import Random from "random";
 import { MersenneTwister19937, Random as RandomJS } from "random-js";
-import { randomInt } from "crypto";
 
 export const mathRandom = () => {
-    return Math.random();
+    const array = new Uint32Array(1);
+    const random = getRandomValues(array);
+    return random[0] / 2 ** 32;
 };
 
 export const random1 = () => {
