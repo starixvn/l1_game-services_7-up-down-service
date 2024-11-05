@@ -2,7 +2,7 @@ export default {
     id: 103,
     name: "SevenUpDown",
     durations: {
-        wholeRound: 29,
+        wholeRound: 33,
         placingBets: 20,
         lockingBet: 3,
         shakeThePlateDuration: 3,
