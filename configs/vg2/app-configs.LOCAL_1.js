@@ -56,7 +56,7 @@ export default {
     otel: {
         system: "VG2",
         enabled: true,
-        endpoint: "http://10.10.50.69:4318/v1/traces",
+        endpoint: "http://jaeger.lumigame.com:31318/v1/traces",
     },
     gameResultSettings: {
         baseUrl: "http://l2_game_result_local_1:5000",
