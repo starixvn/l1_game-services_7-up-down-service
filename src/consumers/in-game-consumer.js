@@ -19,4 +19,10 @@ export default class InGameConsumer extends Core.BaseEventConsumers.InGameConsum
 
         return payload;
     }
+    
+    getResultHash() {
+        return this.gameData.roundId > this.gameData.resultHash.roundId
+            ? { rawValue: this.gameData.resultHash.rawValue, extraInfos: this.gameData.result, hashValue: this.gameData.resultHash.hashValue }
+            : { hashValue: this.gameData.resultHash.hashValue };
+    }
 }
