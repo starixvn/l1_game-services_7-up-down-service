@@ -7,7 +7,7 @@ export default class GameStatusPublisher extends Core.BaseEventPublishers.GameSt
             odds: gameConfigs.odds,
             originalOdds: gameConfigs.originalOdds,
             enableFreeBet: gameConfigs.enableFreeBet,
-            multipliers: gameConfigs.multipliers,
+            multipliers: gameConfigs.oddsMultipliers?.values.filter((x) => x.ratio > 0 && x.number > 1).map((x) => x.number),
         };
 
         const realPlayers = Object.values(this.gameData.realPlayers);
