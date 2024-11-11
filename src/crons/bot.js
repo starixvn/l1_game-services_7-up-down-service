@@ -39,7 +39,6 @@ export default class Bot extends Core.Crons.BaseBot {
             const minBet = this.getMinBet();
             const maxBet = this.getMaxBet(bot, choice);
             const betAmount = this.convertAmountToChip(helpers.numberHelper.getRandomNumberStep5(minBet, maxBet, true));
-            console.log(choice, maxBet, betAmount);
 
             this.gameData.totalBets[choice] = (this.gameData.totalBets[choice] ?? 0) + betAmount;
             this.totalBets[choice] = (this.totalBets[choice] ?? 0) + betAmount;
