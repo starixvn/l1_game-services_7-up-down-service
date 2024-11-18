@@ -27,6 +27,9 @@ export default {
         url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39102,10.10.50.13:39102,10.10.50.14:39102/?replicaSet=L1ppLocal&appName=sevenupdown",
         options: {
             dbName: "minigame",
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            auto_reconnect: true,
         },
     },
     sentry: {
