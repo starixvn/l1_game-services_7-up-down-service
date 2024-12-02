@@ -1,8 +1,20 @@
 import { Core } from "sc-game-base";
 
 export default class InGameConsumer extends Core.BaseEventConsumers.InGameConsumer {
+    async consume(realPlayer) {
+        const { remainingTime, gameConfigs } = this.gameData;
+        const disabled = !gameConfigs || !gameConfigs.enabled || this.gameData.delayStartTime > 0;
+
+        disabled && realPlayer.socketClient.emit(this.definition.name, { remainingTime, um: disabled, um_message: this.gameData.umMessages });
+
+        const payload = await this.buildPayload(realPlayer);
+
+        this.publisher.publishToUser(realPlayer.UID, payload);
+    }
+
     async buildPayload(realPlayer) {
         const payload = await super.buildPayload(realPlayer);
+        const { remainingTime } = this.gameData;
         payload.gameConfigs.maxWinPerRound = this.gameData.gameConfigs.maxWinPerRound;
 
         if (this.gameData.gameConfigs?.oddsMultipliers) {
@@ -16,8 +28,7 @@ export default class InGameConsumer extends Core.BaseEventConsumers.InGameConsum
         if (this.gameData.remainingTime <= this.definition.durations.lockingBet - 1) {
             payload.multiplier = this.gameData.result.multiplier;
         }
-
-        return payload;
+        return { ...payload, remainingTime };
     }
 
     getResultHash() {
