@@ -17,10 +17,13 @@ gameData.currencyGroupGames = [{ groupId: "1", maxBet: 500 }];
 
 describe("ProcessBetQueue", () => {
     let processBetQueue;
-
+    gameData.players = {};
     beforeEach(() => {
         processBetQueue = new ProcessBetQueue({ definition, gameData, gameManagementApiClientFactory, betsRepository, betLogsRepository });
     });
+    const socketClient = {
+        emit: jest.fn(),
+    };
     const player = {
         UID: "player123",
         profile: { name: "John Doe", maxBet: 2000 },
@@ -31,6 +34,7 @@ describe("ProcessBetQueue", () => {
             playerId: "123456",
             currencyGroupId: "1",
         },
+        socketClient,
     };
     describe("upsertBet", () => {
         it("should upsert a bet correctly", async () => {
@@ -68,6 +72,27 @@ describe("ProcessBetQueue", () => {
             const result = processBetQueue.getMaxWinPerRound(player);
 
             expect(result).toBe(500000); // 1000 (maxWinPerRound) * 500 (min of player maxBet and settings maxBet)
+        });
+    });
+
+    describe("generatePlacingBetResult", () => {
+        it("should calls super", () => {
+            // arrange
+         
+            const ownBet = {
+                ownBets: {},
+                endBet: 10,
+                freeBet: false,
+                user: { red: 2000 },
+            };
+            gameData.players[player.UID] = player;
+            jest.spyOn(ProcessBetQueue.prototype, "generatePlacingBetResult").mockResolvedValueOnce({ ownBet });
+
+            // act
+            processBetQueue.generatePlacingBetResult(player, 2000, 10, 0.05);
+
+            // assert
+            expect(ProcessBetQueue.prototype.generatePlacingBetResult).toHaveBeenCalledWith(player, 2000, 10, 0.05);
         });
     });
 });

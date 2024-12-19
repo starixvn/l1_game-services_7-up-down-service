@@ -41,4 +41,13 @@ export default class ProcessBetQueue extends Core.Crons.ProcessBetQueue {
 
         return maxWinPerRound * maxBet;
     }
+
+    generatePlacingBetResult(player, balance, bet, rate) {
+        const { betChoice, amount } = bet;
+        const ownBet = super.generatePlacingBetResult(player, balance, bet, rate);
+
+        ownBet.ownChip = { betChoice, amount };
+
+        return ownBet;
+    }
 }
