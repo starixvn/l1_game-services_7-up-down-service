@@ -1,7 +1,8 @@
 import { Core } from "sc-game-base";
 import InGameConsumer from "../../../src/consumers/in-game-consumer";
 import gameSettings from "../../../src/game-settings";
-
+import BaseEventPublisher from "sc-game-base/src/core/event-publishers/base-event-publisher";
+jest.mock("sc-game-base/src/core/event-publishers/base-event-publisher");
 describe("InGameConsumer", () => {
     const gameManagementApiClientFactory = {
         instance: jest.fn(),
@@ -43,12 +44,18 @@ describe("InGameConsumer", () => {
             ],
         },
         applyMultiplier: true,
+        maxWinPerRound: 2000,
+        enabled: true,
     };
     const definition = new Core.GameDefinition(gameSettings);
-    const realPlayer = {};
-
-    beforeEach(() => {
-        inGameConsumer = new InGameConsumer(definition, gameData, null, null, null, gameManagementApiClientFactory);
+    const realPlayer = {
+        socketClient: {
+            emit: jest.fn(),
+        },
+    };
+    const publisher = new BaseEventPublisher();
+    beforeEach(() => {    
+        inGameConsumer = new InGameConsumer(definition, gameData, null, publisher, null, gameManagementApiClientFactory);
         jest.spyOn(Core.BaseEventConsumers.InGameConsumer.prototype, "buildPayload").mockResolvedValueOnce({ gameConfigs: {} });
     });
     afterEach(() => {
@@ -77,6 +84,19 @@ describe("InGameConsumer", () => {
                 //Assert
                 expect(payload.multiplier).toEqual(gameData.result.multiplier);
             });
+        });
+    });
+
+    describe("consume test", () => {
+        afterEach(() => {
+            jest.clearAllMocks();
+        });
+
+        it("should publish to user game configs", async () => {
+            inGameConsumer.buildPayload = jest.fn(() => ({}));
+            await inGameConsumer.consume(realPlayer);
+
+            expect(publisher.publishToUser).toHaveBeenCalled();
         });
     });
 });
