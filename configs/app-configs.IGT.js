@@ -2,8 +2,8 @@ export default {
     hostingPort: 5002,
     apiSettings: {
         enabledApi: true,
-        apiUrl: "http://l1_game_api_local:5000",
-        authUrl: "http://l1_auth_api_local:5000",
+        apiUrl: "http://l1-game-api-local-service:5000",
+        authUrl: "http://l1-auth-api-local-service:5000",
         client: {
             id: "game-server",
             secret: "gameserver@20luminet&",
