@@ -6334,9 +6334,9 @@ random-js@^2.1.0:
   integrity sha512-CRUyWmnzmZBA7RZSVGq0xMqmgCyPPxbiKNLFA5ud7KenojVX2s7Gv+V7eB52beKTPGxWRnVZ7D/tCIgYJJ8vNQ==
 
 random@^5.1.1:
-  version "5.1.1"
-  resolved "https://npm.lumigame.com/random/-/random-5.1.1.tgz#fc721bcfcc586e73d3dc93e2d8571cf8f452ab81"
-  integrity sha512-iidvORUvXY1ItoYxO0eduHCKl22QV0G6460vRHe862dUagJKPhRyjUGwK8ioOCG4NRuFvExHFpqMngsnr2miwA==
+  version "5.4.1"
+  resolved "http://npm.lumigame.com/random/-/random-5.4.1.tgz#4a36248cec341ea3eeb7410a0f81f3839bc5becb"
+  integrity sha512-HtccRkYkAXCbj9bqsyGKGlicyeZ5AsQgs49fEuUO/BvrJ7WOQqXPjdg1CZrFjBkoT75ozrWlQXJ7TcXXLv2ISQ==
 
 range-parser@~1.2.1:
   version "1.2.1"
