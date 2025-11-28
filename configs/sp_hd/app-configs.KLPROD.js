@@ -31,9 +31,9 @@ export default {
         },
     },
     sentry: {
-        sentryUrl: "http://f4980024f65945179a125e7ce17286d0@sentrysc-ovs.ops-kluat.gamora.prod/178",
+        sentryUrl: "http://f4980024f65945179a125e7ce17286d0@sentry-scklprod-ovs.ops-klprod.gamora.prod/178",
         logIdentifier: "sevenupdown",
-        env: "KLPROD",
+        env: "PROD",
     },
     authenticateSettings: {
         url: "http://sp-hd-auth-api-klprod-service:5000",
@@ -49,7 +49,7 @@ export default {
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
     metrics: {
         enable: true,
-        secretKey: "6c1f0f28-70f2-46ae-b031-22624a6cd8df",
+        secretKey: "30d15293-c7de-4c77-9293-b85d6c5bfe1a",
     },
     gameManagementApiSettings: {
         BASE: "http://sp-hd-game-management-service-klprod-service:5000",
