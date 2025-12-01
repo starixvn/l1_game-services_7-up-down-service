@@ -15,6 +15,7 @@ export default class ContainerRegistry extends Core.ContainerRegistry {
             betsRepository: asValue(bets),
             betLogsRepository: asValue(betLogs),
             resultsRepository: asValue(results),
+            tempBetsRepository: asValue(undefined)
         });
     }
 
