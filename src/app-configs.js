@@ -2,8 +2,8 @@ export default {
     hostingPort: 5000,
     apiSettings: {
         enabledApi: true,
-        apiUrl: "https://l1-api2.lumigame.com",
-        authUrl: "https://l1-auth2.lumigame.com",
+        apiUrl: "https://l2-api1.lumigame.com",
+        authUrl: "https://l2-auth1.lumigame.com",
         client: {
             id: "game-server",
             secret: "gameserver@20luminet&",
@@ -15,7 +15,7 @@ export default {
         enableApiLogs: true,
     },
     gameManagementApiSettings: {
-        BASE: "https://l1-proxy2.lumigame.com/game-management-service",
+        BASE: "https://l2-proxy1.lumigame.com/game-management-service",
     },
     socketOptions: {
         pingInterval: 60 * 1000,
@@ -36,11 +36,11 @@ export default {
         env: "DEV",
     },
     authenticateSettings: {
-        url: "https://l1-auth2.lumigame.com",
+        url: "https://l2-auth1.lumigame.com",
         id: "game-services",
         secret: "gameservices@20luminet&",
         requestTimeout: 10000,
-        useAuthenticate: false,
+        useAuthenticate: true,
         audiences: ["api", "admin-api"],
     },
     adminSecretKey: "asWDEerfOIdgsdqRTFabvmgh",
@@ -49,6 +49,6 @@ export default {
         secretKey: "6c1f0f28-70f2-46ae-b031-22624a6cd8df",
     },
     userServiceSettings: {
-        url: "http://127.0.0.1:5000",
+        url: "https://l2-proxy1.lumigame.com/user",
     },
 };
